@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class tegneProgram : MonoBehaviour
 {
@@ -16,5 +17,10 @@ public class tegneProgram : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnClickPen(){
+        print("bitch");
+
     }
 }

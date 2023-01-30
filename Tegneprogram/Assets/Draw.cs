@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class Draw : MonoBehaviour
 {
     public PenTool PenTool;
@@ -23,4 +23,4 @@ public class Draw : MonoBehaviour
     void TaskOnClick(){
         print("hi");
     }
-}
+}*/
