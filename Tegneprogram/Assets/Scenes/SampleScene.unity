@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 25663156}
   - component: {fileID: 25663155}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SubmitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 519420033}
         m_TargetAssemblyTypeName: tegneProgram, Assembly-CSharp
-        m_MethodName: OnClickPen
+        m_MethodName: SubmitCanvas
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 452242979}
   - component: {fileID: 452242982}
   m_Layer: 5
-  m_Name: 'WidthInputField '
+  m_Name: WidthInputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1032,6 +1032,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35807f15aa85ff944a63207429b7c3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Canvas: {fileID: 9069886004123261426, guid: f4bc157a45bde204aa639c3060999605, type: 3}
+  UiElements:
+  - {fileID: 452242976}
+  - {fileID: 992828017}
+  - {fileID: 751603463}
+  - {fileID: 1861708194}
+  - {fileID: 25663153}
 --- !u!1 &527939365
 GameObject:
   m_ObjectHideFlags: 0
