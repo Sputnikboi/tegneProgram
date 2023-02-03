@@ -10,9 +10,11 @@ public class CanvasScript : MonoBehaviour
     private HeightSize height;
     private WidthSize width;
     public GameObject[] UiElements;
+    public GameObject pen;
     // Start is called before the first frame update
     void Start()
     {   
+        pen=GameObject.Find("Pen Controller");
         UiElements[0] = GameObject.Find("HeightInputField");
         UiElements[1] = GameObject.Find("WidthInputField");
         UiElements[2] = GameObject.Find("HeightText");
@@ -27,6 +29,7 @@ public class CanvasScript : MonoBehaviour
             UiElements[i].SetActive(false);
    
         }
+        pen.GetComponent<SpriteRenderer>().enabled = true;
     }
 
     // Update is called once per frame
