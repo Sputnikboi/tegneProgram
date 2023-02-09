@@ -22,7 +22,7 @@ public class tegneProgram : MonoBehaviour
         
     }
 
-    public void OnClickPen(){
+    public void OnClickPenTool(){
         print("bitch");
         tool = "pen";
     }
