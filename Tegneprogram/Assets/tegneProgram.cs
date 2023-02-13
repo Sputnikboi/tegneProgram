@@ -26,6 +26,9 @@ public class tegneProgram : MonoBehaviour
         print("bitch");
         tool = "pen";
     }
+    public void OnClickBrushTool(){
+        tool = "brush";
+    }
 
     public void SubmitCanvas(){
 

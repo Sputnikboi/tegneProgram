@@ -3,7 +3,12 @@ guid: 71719496a31e95341945c801b19959b4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - obj: {instanceID: 0}
+  - brushSprite: {instanceID: 0}
+  - mainCam: {instanceID: 0}
+  - mat1: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - mat2: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
