@@ -29,8 +29,9 @@ public class PenScript : MonoBehaviour
         if(Input.GetMouseButton(0)){
             //Instantiate(obj,this.transform.position,this.transform.rotation);
             //lineRenderer = new GameObject("Line").AddComponent<LineRenderer>();
-            lineRendererObj= Instantiate(obj,this.transform.position,this.transform.rotation);
-            circObj = Instantiate(circ,this.transform.position,this.transform.rotation);
+            circObj = Instantiate(circ,curPoint,this.transform.rotation);
+            /*lineRendererObj= Instantiate(obj,this.transform.position,this.transform.rotation);
+
             lineRenderer=lineRendererObj.GetComponent<LineRenderer>();
             lineRenderer.startColor = Color.black;
             lineRenderer.endColor = Color.black;
@@ -39,7 +40,7 @@ public class PenScript : MonoBehaviour
             lineRenderer.positionCount = 2;
             lineRenderer.useWorldSpace = true;
             lineRenderer.SetPosition(0, new Vector3(prevMousePos[0],prevMousePos[1],0)); //x,y and z position of the starting point of the line
-            lineRenderer.SetPosition(1, new Vector3(curPoint[0],curPoint[1],0));
+            lineRenderer.SetPosition(1, new Vector3(curPoint[0],curPoint[1],0));*/
         }
     }
 }
