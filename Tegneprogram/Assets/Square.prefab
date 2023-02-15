@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9069886004123261428}
   - component: {fileID: 9069886004123261427}
   - component: {fileID: -8163451041142796961}
-  - component: {fileID: -4449668895694954955}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -109,18 +108,3 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   pen: {fileID: 0}
---- !u!114 &-4449668895694954955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9069886004123261426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71719496a31e95341945c801b19959b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj: {fileID: 0}
-  circ: {fileID: 0}
-  mainCam: {fileID: 0}

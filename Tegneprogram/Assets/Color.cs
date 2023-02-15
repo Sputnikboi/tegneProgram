@@ -1,6 +1,8 @@
+using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class Color : MonoBehaviour
 {
@@ -8,11 +10,20 @@ public class Color : MonoBehaviour
     bool Colorpicker = false;
     Vector3 pos;
     Vector3 mousePos;
+    GameObject canvas;
+    byte[] bytes;
+    string path;
+    Texture2D loadTexture; //mock size 1x1
+    Sprite IMG;
+    int cooldown;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
+        loadTexture = new Texture2D(1,1);
     }
 
     // Update is called once per frame
@@ -20,17 +31,27 @@ public class Color : MonoBehaviour
     {
 
 
-    if(Colorpicker == true){
-        if(Input.GetKeyDown(KeyCode.Mouse0)){
+    if(Colorpicker == true){ //runs on mouseclick
+    //frame delay
+        if(Input.GetKeyDown(KeyCode.Mouse0)&& cooldown <0){
+             ScreenCapture.CaptureScreenshot("IMG.png");
+             path = "C:/Users/linax/OneDrive/Dokumenter/GitHub/tegneProgram/Tegneprogram/IMG.png";
+             bytes = File.ReadAllBytes(path);
+             loadTexture.LoadImage(bytes);
              mousePos=Input.mousePosition;
-             pos = cam.ScreenToWorldPoint(new Vector3(mousePos[0], mousePos[1], 0));
-            //print(tex.GetPixel(pos[0], pos[1] , 0));
+             print(loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0));
         }
+        cooldown--;
     }
 
     }
 
-    public void OnClickColorPicker(){
+    public void OnClickColorPicker(){ //chooses colorpicker in program
         Colorpicker = true;
+        cooldown = 5;
+
     }
+
+    
 }
+
