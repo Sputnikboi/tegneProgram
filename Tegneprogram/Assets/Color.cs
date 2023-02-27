@@ -40,6 +40,7 @@ public class Color : MonoBehaviour
              loadTexture.LoadImage(bytes);
              mousePos=Input.mousePosition;
              print(loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0));
+             Colorpicker = false;
         }
         cooldown--;
     }

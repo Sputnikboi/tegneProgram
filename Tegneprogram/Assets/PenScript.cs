@@ -18,6 +18,7 @@ public class PenScript : MonoBehaviour
     GameObject circObj;
     LineRenderer lineRenderer;
     public Material mat1, mat2;
+    int Order = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,12 +35,13 @@ public class PenScript : MonoBehaviour
         this.transform.position = cam.ScreenToWorldPoint(new Vector3(mousePos[0], mousePos[1], 0));
         curPoint=cam.ScreenToWorldPoint(new Vector3(mousePos[0], mousePos[1], 0));
         if(tegneProgram.tool == "pen"){
-            if(Input.GetKeyDown(KeyCode.Mouse0)){
 
+         if(Input.GetKey(KeyCode.Mouse0)&& drawing == false){
                 lineRendererObj= Instantiate(obj,new Vector3(curPoint[0], curPoint[1],0),this.transform.rotation);
                 lineRenderer=lineRendererObj.GetComponent<LineRenderer>();
+                lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
                 lineRenderer.startColor = new Vector4(0, 1, 1, 1);
-                lineRenderer.endColor = new Vector4(0, 1, 1, 1);
+                lineRenderer.endColor = new Vector4(0, 1, 0, 1);
                 lineRenderer.startWidth = 0.20f;
                 lineRenderer.endWidth = 0.20f;
                 lineRenderer.positionCount = 2;
@@ -47,12 +49,17 @@ public class PenScript : MonoBehaviour
                 lineRenderer.SetPosition(0, new Vector3(prevMousePos[0],prevMousePos[1],0)); //x,y and z position of the starting point of the line
                 lineRenderer.SetPosition(1, new Vector3(curPoint[0],curPoint[1],0));
                 drawing = true;
+                lineRenderer.sortingOrder = Order;
+                Order++;
+
 
             } else if(Input.GetKey(KeyCode.Mouse0) && drawing){
+
+
                 lineRenderer.positionCount++;
                 curPos++;
                 lineRenderer.SetPosition(curPos, new Vector3(curPoint[0],curPoint[1],0));
-                
+
             } else{ 
                 lineRenderer= null;
                 curPos =1;
