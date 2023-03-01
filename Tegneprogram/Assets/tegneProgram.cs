@@ -7,13 +7,14 @@ public class tegneProgram : MonoBehaviour
 {
    public static string tool;
    public GameObject Canvas;
+   public Vector4 color;
    
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        color = new Vector4(0,0,0,1);
     }
 
     // Update is called once per frame

@@ -20,7 +20,6 @@ public class CanvasScript : MonoBehaviour
         UiElements[2] = GameObject.Find("HeightText");
         UiElements[3] = GameObject.Find("WidthText");
         UiElements[4] = GameObject.Find("SubmitButton");
-
         height =UiElements[0].GetComponent<HeightSize>();
         width = UiElements[1].GetComponent<WidthSize>();
         transform.localScale = new Vector3(width.width/100,height.height/100,1);

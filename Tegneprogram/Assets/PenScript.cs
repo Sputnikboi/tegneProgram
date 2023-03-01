@@ -40,8 +40,8 @@ public class PenScript : MonoBehaviour
                 lineRendererObj= Instantiate(obj,new Vector3(curPoint[0], curPoint[1],0),this.transform.rotation);
                 lineRenderer=lineRendererObj.GetComponent<LineRenderer>();
                 lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-                lineRenderer.startColor = new Vector4(0, 1, 1, 1);
-                lineRenderer.endColor = new Vector4(0, 1, 0, 1);
+                lineRenderer.startColor = tegneProgram.color;
+                lineRenderer.endColor = tegneProgram.color;
                 lineRenderer.startWidth = 0.20f;
                 lineRenderer.endWidth = 0.20f;
                 lineRenderer.positionCount = 2;
