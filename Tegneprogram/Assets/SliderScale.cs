@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Opacity : MonoBehaviour
-{   
+public class SliderScale : MonoBehaviour
+{
     GameObject MainCamera;
     public Slider slider;
     tegneProgram tegneProgram;
@@ -12,11 +12,12 @@ public class Opacity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        slider = GameObject.Find("OpacitySlider").GetComponent<Slider>();
+        slider = GameObject.Find("brushSlider").GetComponent<Slider>();
         print(slider.value);
         MainCamera = GameObject.Find("Main Camera");
         tegneProgram = MainCamera.GetComponent<tegneProgram>();
         color = tegneProgram.color;
+        
     }
 
     // Update is called once per frame
@@ -25,10 +26,7 @@ public class Opacity : MonoBehaviour
         
     }
 
-    public void opacity(){
-        color = tegneProgram.color;
-        color[3] = slider.value;
-        print(color);
-        tegneProgram.color = color;
+    public void ChangeSize(){
+        tegneProgram.size = slider.value;
     }
 }

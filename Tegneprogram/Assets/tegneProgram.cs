@@ -8,6 +8,7 @@ public class tegneProgram : MonoBehaviour
    public static string tool;
    public GameObject Canvas;
    public Vector4 color;
+   public float size;
    
 
 
@@ -15,6 +16,7 @@ public class tegneProgram : MonoBehaviour
     void Start()
     {
         color = new Vector4(0,0,0,1);
+        size = 0.2f;
     }
 
     // Update is called once per frame

@@ -42,8 +42,8 @@ public class PenScript : MonoBehaviour
                 lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
                 lineRenderer.startColor = tegneProgram.color;
                 lineRenderer.endColor = tegneProgram.color;
-                lineRenderer.startWidth = 0.20f;
-                lineRenderer.endWidth = 0.20f;
+                lineRenderer.startWidth = tegneProgram.size;
+                lineRenderer.endWidth = tegneProgram.size;
                 lineRenderer.positionCount = 2;
                 lineRenderer.useWorldSpace = true;
                 lineRenderer.SetPosition(0, new Vector3(prevMousePos[0],prevMousePos[1],0)); //x,y and z position of the starting point of the line

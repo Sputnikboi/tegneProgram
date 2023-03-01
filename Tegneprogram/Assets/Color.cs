@@ -17,6 +17,7 @@ public class Color : MonoBehaviour
     int cooldown;
     tegneProgram tegneProgram;
     Vector4 color;
+    Vector4 tempVec;
 
 
 
@@ -44,7 +45,9 @@ public class Color : MonoBehaviour
              loadTexture.LoadImage(bytes);
              mousePos=Input.mousePosition;
              print(loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0));
+            tempVec = tegneProgram.color;
              tegneProgram.color = loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0);
+             tegneProgram.color[3] = tempVec[3];
              print(tegneProgram.color);
              Colorpicker = false;
         }

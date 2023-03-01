@@ -21,6 +21,7 @@ public class colorwheel : MonoBehaviour
     tegneProgram tegneProgram;
     Vector4 color;
     int delay;
+    Vector4 tempVec;
 
 
 
@@ -54,7 +55,9 @@ public class colorwheel : MonoBehaviour
             loadTexture.LoadImage(bytes);
             mousePos=Input.mousePosition;
             print(loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0));
+            tempVec = tegneProgram.color;
             tegneProgram.color = loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0);
+            tegneProgram.color[3] = tempVec[3];
             print(tegneProgram.color);
             Colorpicker = false;
             delay = 5;
