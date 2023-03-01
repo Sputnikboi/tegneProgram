@@ -11,6 +11,7 @@ public class CanvasScript : MonoBehaviour
     private WidthSize width;
     public GameObject[] UiElements;
     public GameObject pen;
+    public GameObject StartPanel; 
     // Start is called before the first frame update
     void Start()
     {   
@@ -20,11 +21,12 @@ public class CanvasScript : MonoBehaviour
         UiElements[2] = GameObject.Find("HeightText");
         UiElements[3] = GameObject.Find("WidthText");
         UiElements[4] = GameObject.Find("SubmitButton");
+        UiElements[5] = GameObject.Find("StartPanel");
         height =UiElements[0].GetComponent<HeightSize>();
         width = UiElements[1].GetComponent<WidthSize>();
         transform.localScale = new Vector3(width.width/100,height.height/100,1);
 
-        for(int i=0;i <5; i++){
+        for(int i=0;i <6; i++){
             UiElements[i].SetActive(false);
    
         }
