@@ -12,7 +12,7 @@ public class SliderScale : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        slider = GameObject.Find("brushSlider").GetComponent<Slider>();
+        slider = GameObject.Find("BrushSlider").GetComponent<Slider>();
         print(slider.value);
         MainCamera = GameObject.Find("Main Camera");
         tegneProgram = MainCamera.GetComponent<tegneProgram>();
