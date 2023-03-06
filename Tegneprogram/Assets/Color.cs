@@ -18,7 +18,7 @@ public class Color : MonoBehaviour
     tegneProgram tegneProgram;
     Vector4 color;
     Vector4 tempVec;
-
+    string tempTool;
 
 
 
@@ -50,6 +50,7 @@ public class Color : MonoBehaviour
              tegneProgram.color[3] = tempVec[3];
              print(tegneProgram.color);
              Colorpicker = false;
+             tegneProgram.tool = tempTool;
         }
         cooldown--;
     }
@@ -57,6 +58,9 @@ public class Color : MonoBehaviour
     }
 
     public void OnClickColorPicker(){ //chooses colorpicker in program
+        tempTool = tegneProgram.tool;
+        
+        tegneProgram.tool="colorwheel";
         Colorpicker = true;
         cooldown = 5;
 

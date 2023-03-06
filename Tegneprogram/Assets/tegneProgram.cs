@@ -5,7 +5,7 @@ using TMPro;
 
 public class tegneProgram : MonoBehaviour
 {
-   public static string tool;
+   public string tool;
    public GameObject Canvas;
    public Vector4 color;
    public float size;
@@ -26,7 +26,6 @@ public class tegneProgram : MonoBehaviour
     }
 
     public void OnClickPenTool(){
-        print("bitch");
         tool = "pen";
     }
     public void OnClickBrushTool(){

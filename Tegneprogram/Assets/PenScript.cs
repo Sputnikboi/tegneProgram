@@ -70,6 +70,10 @@ public class PenScript : MonoBehaviour
                 circObj = Instantiate(brushSprite,new Vector3(curPoint[0],curPoint[1],0) ,this.transform.rotation);
                 circObj.GetComponent<SpriteRenderer>().enabled = true;
             }
+        } else {
+            lineRenderer= null;
+            curPos =1;
+            drawing = false;
         }
     }
 }
