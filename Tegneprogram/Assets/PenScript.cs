@@ -12,11 +12,11 @@ public class PenScript : MonoBehaviour
     public GameObject brushSprite;
     public GameObject mainCam;
     private tegneProgram tegneProgram;
-    int curPos = 0;
-    bool drawing = false;
-    GameObject lineRendererObj;
+    public int curPos = 0;
+    public bool drawing = false;
+    public GameObject lineRendererObj;
     GameObject circObj;
-    LineRenderer lineRenderer;
+    public LineRenderer lineRenderer;
     public Material mat1, mat2;
     int Order = 1;
     // Start is called before the first frame update
@@ -70,6 +70,35 @@ public class PenScript : MonoBehaviour
                 circObj = Instantiate(brushSprite,new Vector3(curPoint[0],curPoint[1],0) ,this.transform.rotation);
                 circObj.GetComponent<SpriteRenderer>().enabled = true;
             }
+        } else if(tegneProgram.tool == "eraser"){
+            if(Input.GetKey(KeyCode.Mouse0) && drawing == false){
+                lineRendererObj= Instantiate(obj,new Vector3(curPoint[0], curPoint[1],0),this.transform.rotation);
+                lineRenderer=lineRendererObj.GetComponent<LineRenderer>();
+                lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+                lineRenderer.startColor = new Vector4(1,1,1,1);
+                lineRenderer.endColor = new Vector4(1,1,1,1);
+                lineRenderer.startWidth = tegneProgram.size;
+                lineRenderer.endWidth = tegneProgram.size;
+                lineRenderer.positionCount = 2;
+                lineRenderer.useWorldSpace = true;
+                lineRenderer.SetPosition(0, new Vector3(prevMousePos[0],prevMousePos[1],0)); //x,y and z position of the starting point of the line
+                lineRenderer.SetPosition(1, new Vector3(curPoint[0],curPoint[1],0));
+                drawing = true;
+                lineRenderer.sortingOrder = Order;
+                Order++;
+            } else if(Input.GetKey(KeyCode.Mouse0) && drawing){
+
+
+                lineRenderer.positionCount++;
+                curPos++;
+                lineRenderer.SetPosition(curPos, new Vector3(curPoint[0],curPoint[1],0));
+
+            } else{ 
+                lineRenderer= null;
+                curPos =1;
+                drawing = false;
+            }
+
         } else {
             lineRenderer= null;
             curPos =1;

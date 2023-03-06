@@ -11,7 +11,7 @@ public class WidthSize : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        width = 500;
+        width = 1200;
         //inputField = GameObject.Find("HeightInputField");
     }
 

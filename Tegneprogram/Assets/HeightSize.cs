@@ -11,7 +11,7 @@ public class HeightSize : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        height = 500;
+        height = 700;
         //inputField = GameObject.Find("HeightInputField");
     }
 
