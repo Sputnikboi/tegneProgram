@@ -20,35 +20,35 @@ public class PenScript : MonoBehaviour
     public Material mat1, mat2;
     int Order = 1;
     // Start is called before the first frame update
-    void Start()
+    void Start() //finds the main camera and the tegneProgram script
     {
         cam = Camera.main;
-        curPos=1;
+        curPos=1;//Prepares the curPos variable for use during the pen tool
         tegneProgram = mainCam.GetComponent<tegneProgram>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        prevMousePos =  cam.ScreenToWorldPoint(new Vector3(mousePos[0], mousePos[1], 0));
-        mousePos=Input.mousePosition;
-        this.transform.position = cam.ScreenToWorldPoint(new Vector3(mousePos[0], mousePos[1], 0));
-        curPoint=cam.ScreenToWorldPoint(new Vector3(mousePos[0], mousePos[1], 0));
-        if(tegneProgram.tool == "pen"){
+        prevMousePos =  cam.ScreenToWorldPoint(new Vector3(mousePos[0], mousePos[1], 0)); //gets the location of the cursor in the scene from the previous frame
+        mousePos=Input.mousePosition; //get the current mouse position
+        this.transform.position = cam.ScreenToWorldPoint(new Vector3(mousePos[0], mousePos[1], 0)); //gets the location of the cursor in the scene and sets the position of the penController to that location
+        curPoint=cam.ScreenToWorldPoint(new Vector3(mousePos[0], mousePos[1], 0)); //gets the location of the cursor in the scene
+        if(tegneProgram.tool == "pen"){ // checks if the current tool is the pen tool
 
-         if(Input.GetKey(KeyCode.Mouse0)&& drawing == false){
-                lineRendererObj= Instantiate(obj,new Vector3(curPoint[0], curPoint[1],0),this.transform.rotation);
-                lineRenderer=lineRendererObj.GetComponent<LineRenderer>();
-                lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-                lineRenderer.startColor = tegneProgram.color;
-                lineRenderer.endColor = tegneProgram.color;
-                lineRenderer.startWidth = tegneProgram.size;
-                lineRenderer.endWidth = tegneProgram.size;
-                lineRenderer.positionCount = 2;
-                lineRenderer.useWorldSpace = true;
-                lineRenderer.SetPosition(0, new Vector3(prevMousePos[0],prevMousePos[1],0)); //x,y and z position of the starting point of the line
-                lineRenderer.SetPosition(1, new Vector3(curPoint[0],curPoint[1],0));
-                drawing = true;
+         if(Input.GetKey(KeyCode.Mouse0)&& drawing == false){ //one first click of the mouse button, a lineRenderer object is instantiated and prepared
+                lineRendererObj= Instantiate(obj,new Vector3(curPoint[0], curPoint[1],0),this.transform.rotation); //instantiates a lineRenderer object
+                lineRenderer=lineRendererObj.GetComponent<LineRenderer>(); //gets the lineRenderer component from the lineRenderer object
+                lineRenderer.material = new Material(Shader.Find("Sprites/Default")); //sets the material of the lineRenderer to the default sprite material
+                lineRenderer.startColor = tegneProgram.color; //sets the color of the lineRenderer to the current color
+                lineRenderer.endColor = tegneProgram.color; //sets the color of the lineRenderer to the current color
+                lineRenderer.startWidth = tegneProgram.size; //sets the width of the lineRenderer to the current size
+                lineRenderer.endWidth = tegneProgram.size; //sets the width of the lineRenderer to the current size
+                lineRenderer.positionCount = 2; //sets the number of positions in the lineRenderer to 2
+                lineRenderer.useWorldSpace = true; //sets the lineRenderer to use world space required for rendering
+                lineRenderer.SetPosition(0, new Vector3(prevMousePos[0],prevMousePos[1],0)); //sets the starting x,y and z position of the line to the posistion of the cursor in the previous frame
+                lineRenderer.SetPosition(1, new Vector3(curPoint[0],curPoint[1],0)); //sets the 2nd x,y and z position to the current position of the cursor
+                drawing = true; //sets the drawing variable to true used to check if the user is still drawing or not
                 lineRenderer.sortingOrder = Order;
                 Order++;
 
