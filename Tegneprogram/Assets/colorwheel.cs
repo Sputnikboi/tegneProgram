@@ -7,7 +7,7 @@ using System.IO;
 public class colorwheel : MonoBehaviour
 {
     private Camera cam; 
-    bool Colorpicker = false;
+    bool Colorwheel = false;
     Vector3 pos;
     Vector3 mousePos;
     GameObject canvas;
@@ -45,13 +45,13 @@ public class colorwheel : MonoBehaviour
     {
 
 
-    if(Colorpicker == true){ //runs on mouseclick
+    if(Colorwheel == true){ //runs on mouseclick
     //frame delay
         if(Input.GetKeyDown(KeyCode.Mouse0)&& cooldown <0){
             ScreenCapture.CaptureScreenshot("IMG.png");
             path = "IMG.png";
 
-            Colorpicker = false;
+            Colorwheel = false;
             delay = 5;
             
         }
@@ -84,7 +84,7 @@ public class colorwheel : MonoBehaviour
 
         print("here"); 
 
-        Colorpicker = true;
+        Colorwheel = true;
         cooldown = 5;
 
     }
