@@ -26,9 +26,9 @@ public class Color : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        loadTexture = new Texture2D(1,1);
-        tegneProgram = GameObject.Find("Main Camera").GetComponent<tegneProgram>();
-        color = tegneProgram.color;
+        loadTexture = new Texture2D(1,1); //texture2D libray is used for "GetPixel" later
+        tegneProgram = GameObject.Find("Main Camera").GetComponent<tegneProgram>(); //locates "tegneProgram" script
+        color = tegneProgram.color; //sets the color in this class to the color from "tegneProgram"
     }
 
     // Update is called once per frame
@@ -38,19 +38,19 @@ public class Color : MonoBehaviour
 
     if(Colorpicker == true){ //runs on mouseclick
     //frame delay
-        if(Input.GetKeyDown(KeyCode.Mouse0)&& cooldown <0){
-             ScreenCapture.CaptureScreenshot("IMG.png");
-             path = "IMG.png";
-             bytes = File.ReadAllBytes(path);
-             loadTexture.LoadImage(bytes);
-             mousePos=Input.mousePosition;
-             print(loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0));
-            tempVec = tegneProgram.color;
-             tegneProgram.color = loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0);
-             tegneProgram.color[3] = tempVec[3];
+        if(Input.GetKeyDown(KeyCode.Mouse0)&& cooldown <0){ //cooldown ensures that program waits for new mouseclick
+             ScreenCapture.CaptureScreenshot("IMG.png"); //screenshot
+             path = "IMG.png"; //path in program folder
+             bytes = File.ReadAllBytes(path); 
+             loadTexture.LoadImage(bytes); //image is loaded from "bytes" as a texture
+             mousePos=Input.mousePosition; //gets mouseposition
+             print(loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0)); //prints pixelcolor from mousePos on texture
+            tempVec = tegneProgram.color; //temp for saving alpha value (opacity)
+             tegneProgram.color = loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0); //sets "master" color (tegneProgram.color) to pixelcolor value (including pixel alpha)
+             tegneProgram.color[3] = tempVec[3]; //changes back alpha value to temp alpha value
              print(tegneProgram.color);
-             Colorpicker = false;
-             tegneProgram.tool = tempTool;
+             Colorpicker = false; //sets colorpicker to false awaiting new click
+             tegneProgram.tool = tempTool; //sets tool back to previous tool "tempTool"
         }
         cooldown--;
     }
@@ -58,10 +58,10 @@ public class Color : MonoBehaviour
     }
 
     public void OnClickColorPicker(){ //chooses colorpicker in program
-        tempTool = tegneProgram.tool;
+        tempTool = tegneProgram.tool; //saves previous tool to "tempTool"
         
-        tegneProgram.tool="colorwheel";
-        Colorpicker = true;
+        tegneProgram.tool="colorpicker"; //sets "tegnProgram.tool" to "colorpicker" to prevent error when clicking a color
+        Colorpicker = true; //sets Colorpicker to true, to run if-statement
         cooldown = 5;
 
     }

@@ -11,10 +11,10 @@ public class SaveImg : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      Canvas = GameObject.Find("Canvas");
-      print(Canvas);
-      name = "1.png";   
-      numb = 1;
+      Canvas = GameObject.Find("Canvas"); //locates "canvas" 
+      print(Canvas); 
+      name = "1.png"; //sets filename, path is local to file folder
+      numb = 1; 
       delay = -1;
     }
 

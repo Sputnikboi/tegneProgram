@@ -29,14 +29,13 @@ public class colorwheel : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        loadTexture = new Texture2D(1,1);
+        loadTexture = new Texture2D(1,1); //texture2D library is used for GetPixel later
  
-        ColorWheel = GameObject.Find("ColorWheel");
+        ColorWheel = GameObject.Find("ColorWheel"); //locates ColorWheel image
+        ColorWheel.SetActive(false); //sets Image to inactive
 
-
-        ColorWheel.SetActive(false);
-        tegneProgram = GameObject.Find("Main Camera").GetComponent<tegneProgram>();
-        color = tegneProgram.color;
+        tegneProgram = GameObject.Find("Main Camera").GetComponent<tegneProgram>(); //locates "tegneProgram" script
+        color = tegneProgram.color; //sets "color" to "tegneProgram.color"
         delay = 19948313;
     }
 
@@ -47,45 +46,43 @@ public class colorwheel : MonoBehaviour
 
     if(Colorwheel == true){ //runs on mouseclick
     //frame delay
-        if(Input.GetKeyDown(KeyCode.Mouse0)&& cooldown <0){
-            ScreenCapture.CaptureScreenshot("IMG.png");
-            path = "IMG.png";
+        if(Input.GetKeyDown(KeyCode.Mouse0)&& cooldown <0){ //cooldown ensures that program waits for new mouseclick
+            ScreenCapture.CaptureScreenshot("IMG.png"); //takes screenshot
+            path = "IMG.png"; //filepath from program folder
 
-            Colorwheel = false;
-            delay = 5;
+            Colorwheel = false; //colorwheel is set to false awaiting new activation
+            delay = 5; //delay to ensure that screenshot is taken before the rest of the code runs
             
         }
 
     }
 
-    cooldown--;
-    delay--;
+    cooldown--; 
+    delay--; 
         if(delay <= 0){
-            ColorWheel.SetActive(false);
+            ColorWheel.SetActive(false); //sets "colorWheel" to inactive
             delay = 19948313;
-            tegneProgram.tool = tempTool;
+            tegneProgram.tool = tempTool; //"tegneProgram.tool" is set to "tempTool" to save previous tool
             bytes = File.ReadAllBytes(path);
-            loadTexture.LoadImage(bytes);
-            mousePos=Input.mousePosition;
-            print(loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0));
-            tempVec = tegneProgram.color;
-            tegneProgram.color = loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0);
-            tegneProgram.color[3] = tempVec[3];
+            loadTexture.LoadImage(bytes); //images is loaded from "bytes" as a texture
+            mousePos=Input.mousePosition; //gets mouseposition
+            print(loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0)); //prints pixelcolor from mouseposition on texture (image)
+            tempVec = tegneProgram.color; //tempVec to save alpha value from pixel color
+            tegneProgram.color = loadTexture.GetPixel((int)(mousePos[0]), (int)(mousePos[1]) , 0); //sets "tegneProgram.color" to pixelcolor from mouseposition on image
+            tegneProgram.color[3] = tempVec[3]; //sets alpha value back to saved alpha value (opacity) in "tempVec"
             print(tegneProgram.color);
         }
     }
 
     public void OnClickColorWheel(){
-        tempTool = tegneProgram.tool;
+        tempTool = tegneProgram.tool; //sets "tempTool" to "tegneProgram.tool"
         
-        tegneProgram.tool="colorwheel";
+        tegneProgram.tool="colorwheel"; //sets "tegnProgram.tool" to "colorwheel" to prevent error when clicking a color
 
-        ColorWheel.SetActive(true);
+        ColorWheel.SetActive(true); //sets ColorWheel as inactive
 
-        print("here"); 
-
-        Colorwheel = true;
-        cooldown = 5;
+        Colorwheel = true; //Colorwheel is set to true, so rest of the code runs
+        cooldown = 5; //cooldown to wait for colorwheel to appear
 
     }
 
