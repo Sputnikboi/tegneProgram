@@ -12,11 +12,11 @@ public class SliderScale : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        slider = GameObject.Find("BrushSlider").GetComponent<Slider>();
+        slider = GameObject.Find("BrushSlider").GetComponent<Slider>(); //BrusgSlider lokaliseres via GetComponent
         print(slider.value);
         MainCamera = GameObject.Find("Main Camera");
-        tegneProgram = MainCamera.GetComponent<tegneProgram>();
-        color = tegneProgram.color;
+        tegneProgram = MainCamera.GetComponent<tegneProgram>(); //"tegneProgram" script lokaliseres
+        color = tegneProgram.color; //"color" sættes til "tegneProgram.color"
         
     }
 
@@ -27,6 +27,6 @@ public class SliderScale : MonoBehaviour
     }
 
     public void ChangeSize(){
-        tegneProgram.size = slider.value;
+        tegneProgram.size = slider.value; //"tegneProgram.size" sættes til "slider.value", styrer størrelse på tools
     }
 }
