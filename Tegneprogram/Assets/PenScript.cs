@@ -49,57 +49,56 @@ public class PenScript : MonoBehaviour
                 lineRenderer.SetPosition(0, new Vector3(prevMousePos[0],prevMousePos[1],0)); //sets the starting x,y and z position of the line to the posistion of the cursor in the previous frame
                 lineRenderer.SetPosition(1, new Vector3(curPoint[0],curPoint[1],0)); //sets the 2nd x,y and z position to the current position of the cursor
                 drawing = true; //sets the drawing variable to true used to check if the user is still drawing or not
-                lineRenderer.sortingOrder = Order;
-                Order++;
+                lineRenderer.sortingOrder = Order;//orders new lines on top of old lines
+                Order++; //increases the order variable so that new lines are always on top of old lines
 
 
-            } else if(Input.GetKey(KeyCode.Mouse0) && drawing){
+            } else if(Input.GetKey(KeyCode.Mouse0) && drawing){ //if the user is still drawing, the lineRenderer object is updated with the new position of the cursor
 
+
+                lineRenderer.positionCount++; //increases the number of positions in the lineRenderer by 1
+                curPos++; //increases the curPos variable by 1 so the linjeRenderer knows where to place the next position
+                lineRenderer.SetPosition(curPos, new Vector3(curPoint[0],curPoint[1],0)); //sets the next position of the lineRenderer to the current position of the cursor
+
+            } else{ //if the user stops drawing the current lineRenderer is reset to prepare for the next line
+                lineRenderer= null; //resets the lineRenderer variable
+                curPos =1; //resets the curPos variable
+                drawing = false; //resets the drawing variable
+            }
+        } else if(tegneProgram.tool == "brush"){ //checks if the current tool is the brush tool
+            if(Input.GetKey(KeyCode.Mouse0)){ //if the user is holding down the mouse button, a brush sprite is instantiated at the current position of the cursor
+                circObj = Instantiate(brushSprite,new Vector3(curPoint[0],curPoint[1],0) ,this.transform.rotation); //instantiates a brush sprite
+                circObj.GetComponent<SpriteRenderer>().enabled = true; //enables the spriteRenderer component of the brush sprite
+            }
+        } else if(tegneProgram.tool == "eraser"){ //checks if the current tool is the eraser tool
+            if(Input.GetKey(KeyCode.Mouse0) && drawing == false){ //uses the same code as the pen tool to draw a lineRenderer object thats always white instead of the current color
+                lineRendererObj= Instantiate(obj,new Vector3(curPoint[0], curPoint[1],0),this.transform.rotation); //instantiates a lineRenderer object
+                lineRenderer=lineRendererObj.GetComponent<LineRenderer>(); //targets the lineRenderer component of the lineRenderer object
+                lineRenderer.material = new Material(Shader.Find("Sprites/Default")); //sets the material of the lineRenderer to the default sprite material
+                lineRenderer.startColor = new Vector4(1,1,1,1); //sets the color of the lineRenderer to white
+                lineRenderer.endColor = new Vector4(1,1,1,1); //sets the color of the lineRenderer to white
+                lineRenderer.startWidth = tegneProgram.size; //sets the width of the lineRenderer to the current size
+                lineRenderer.endWidth = tegneProgram.size; //sets the width of the lineRenderer to the current size
+                lineRenderer.positionCount = 2;//sets the number of positions in the lineRenderer to 2
+                lineRenderer.useWorldSpace = true; //sets the lineRenderer to use world space required for rendering
+                lineRenderer.SetPosition(0, new Vector3(prevMousePos[0],prevMousePos[1],0)); //sets the starting x,y and z position of the line to the posistion of the cursor in the previous frame
+                lineRenderer.SetPosition(1, new Vector3(curPoint[0],curPoint[1],0)); //sets the 2nd x,y and z position to the current position of the cursor
+                drawing = true; //sets the drawing variable to true used to check if the user is still drawing or not
+                lineRenderer.sortingOrder = Order; //orders new lines on top of old lines
+                Order++; //increases the order variable so that new lines are always on top of old lines
+            } else if(Input.GetKey(KeyCode.Mouse0) && drawing){ //same as the pen tool 
 
                 lineRenderer.positionCount++;
                 curPos++;
                 lineRenderer.SetPosition(curPos, new Vector3(curPoint[0],curPoint[1],0));
 
-            } else{ 
-                lineRenderer= null;
-                curPos =1;
-                drawing = false;
-            }
-        } else if(tegneProgram.tool == "brush"){
-            if(Input.GetKey(KeyCode.Mouse0)){
-                circObj = Instantiate(brushSprite,new Vector3(curPoint[0],curPoint[1],0) ,this.transform.rotation);
-                circObj.GetComponent<SpriteRenderer>().enabled = true;
-            }
-        } else if(tegneProgram.tool == "eraser"){
-            if(Input.GetKey(KeyCode.Mouse0) && drawing == false){
-                lineRendererObj= Instantiate(obj,new Vector3(curPoint[0], curPoint[1],0),this.transform.rotation);
-                lineRenderer=lineRendererObj.GetComponent<LineRenderer>();
-                lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-                lineRenderer.startColor = new Vector4(1,1,1,1);
-                lineRenderer.endColor = new Vector4(1,1,1,1);
-                lineRenderer.startWidth = tegneProgram.size;
-                lineRenderer.endWidth = tegneProgram.size;
-                lineRenderer.positionCount = 2;
-                lineRenderer.useWorldSpace = true;
-                lineRenderer.SetPosition(0, new Vector3(prevMousePos[0],prevMousePos[1],0)); //x,y and z position of the starting point of the line
-                lineRenderer.SetPosition(1, new Vector3(curPoint[0],curPoint[1],0));
-                drawing = true;
-                lineRenderer.sortingOrder = Order;
-                Order++;
-            } else if(Input.GetKey(KeyCode.Mouse0) && drawing){
-
-
-                lineRenderer.positionCount++;
-                curPos++;
-                lineRenderer.SetPosition(curPos, new Vector3(curPoint[0],curPoint[1],0));
-
-            } else{ 
+            } else{ //same as the pen tool aka clears the lineRenderer and resets the drawing variables
                 lineRenderer= null;
                 curPos =1;
                 drawing = false;
             }
 
-        } else {
+        } else { //if all else fails, the lineRenderer is cleared and the drawing variables are reset to prevent weird drawing lines when switching tools
             lineRenderer= null;
             curPos =1;
             drawing = false;
